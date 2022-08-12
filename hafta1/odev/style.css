@@ -1,0 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: block;
+  max-width: 60%;
+  /* border: 1px solid red; */
+  height: auto;
+  /* padding: 20px; */
+  margin: 10px auto;
+}
+
+.searchbar {
+  width: 100%;
+  /* border: 1px solid red; */
+  /* margin: 5px; */
+  padding: 20px;
+  display: inline-block;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 2px;
+}
+
+.selectbar {
+  width: 100%;
+  /* border: 1px solid red; */
+  /* margin: 5px; */
+  margin-top: 5px;
+  padding: 20px;
+  display: inline-block;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 2px;
+}
+
+.albums {
+  width: 100%;
+  /* border: 1px solid blue; */
+  /* height: 100%; */
+  /* margin: 5px; */
+  margin-top: 5px;
+  display: inline-block;
+  text-align: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  border-radius: 2px;
+  transition-property: all;
+}
+
+.album {
+  vertical-align: top;
+  width: 200px;
+  height: auto;
+  /* border: 1px solid blue; */
+  margin: 10px;
+  padding: 5px;
+  display: inline-block;
+  text-align: center;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+}
+
+.image {
+  width: 100%;
+  /* border: 1px solid blue; */
+}
+.image > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.title {
+  /* display: inline-block; */
+  font-size: 14px;
+  /* font-weight: bold; */
+  height: 90px;
+  /* border: 1px solid blue; */
+  margin-top: 5px;
+  padding: 10px;
+}
+
+
+.deletebutton > button{
+  background-color: red;
+  display: inline-block;
+  border: none;
+  width: 20px;
+  height: 20px;
+  /* margin-top: 5px; */
+  color: white;
+  text-align: center;
+}
