@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import Film from './Item';
 
@@ -12,19 +12,25 @@ function MainPage() {
     nextPage: true,
     prevPage: true,
   });
-//genel olarak fetch yapan bir fonksiyon tanımladık
+  //genel olarak fetch yapan bir fonksiyon tanımladık
   const fetchData = async url => {
     const response = await axios.get(url);
     const results = await response.data;
     return results;
   };
+  const fetchURL = `https://swapi.dev/api/people/?page=${pagination.page}`;
+
+  //fetch fonskiyonunda parametreler değişmezse morize et dedik, yani parametresi değişmediği müddetçe fetch atmayacak
+  const memorizedResults = useMemo(() => fetchData(fetchURL), [fetchURL]);
+
+  // console.log(memorizedResults);
 
   useEffect(() => {
     //sayfa açıldığında paginationı kontrol eden bir fonksiyon tanımladık
     const fetchURL = `https://swapi.dev/api/people/?page=${pagination.page}`;
     const getData = async () => {
-      const fetchMainPage = await fetchData(fetchURL);
-      // console.log(fetchMainPage.results);
+      const fetchMainPage = await memorizedResults;
+      // const fetchMainPage = await fetchData(fetchURL);
       setData(fetchMainPage.results);
       setPagination({
         ...pagination,
@@ -82,13 +88,14 @@ function MainPage() {
     setData(deleteItems);
   };
   // eslint-disable-next-line
-  const filteredValues = data.filter(people => {
+
     //inputa göre filtreleme
     if (people.name.toLowerCase().includes(inputValue.toLowerCase())) {
       return people;
     }
   });
   // eslint-disable-next-line
+  const filteredValuesByOption = filteredValues?.filter(people => {
   const filteredValuesByOption = filteredValues.filter(people => {
     //optiona göre filtreleme
     if (people.gender === optionValue) {
@@ -100,6 +107,7 @@ function MainPage() {
 
   return (
     <>
+      {data?.length === 0 ? (
       {data.length === 0 ? (
         //data yoksa bu kısımı render eder
         <div className="loading-message">
@@ -110,7 +118,7 @@ function MainPage() {
         </div>
       ) : (
         <>
-        {/* //data var ise bu kısımı render eder */}
+  
           <div className="search-bar">
             <label>Search</label>
             <input
@@ -133,7 +141,7 @@ function MainPage() {
             </select>
           </div>
           <div className="pagination">
-          {/* pagination */}
+
             <button
               disabled={pagination.prevPage}
               onClick={() =>
@@ -173,7 +181,7 @@ function MainPage() {
                 <div className="hdr">Actions</div>
               </div>
               <div>
-              {/* filtrelenen datayı map liyoruz */}
+
                 {filteredValuesByOption.map((item, index) => (
                   <div key={index} className="item-container"  >
                     <div className="item-name">{item.name}</div>
@@ -184,6 +192,7 @@ function MainPage() {
                     <div className="item-films">
                       {item.films.map((url, index) => (
                         <Film key={index} url={url} />
+                        //<Film  /> //useMemo kullanımını görmek için bir prop geçmedim.
                       ))}
                     </div>
                     <div className="item-row-actions">
