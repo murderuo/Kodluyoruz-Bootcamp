@@ -13,7 +13,9 @@ function AllPageRoutes() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/contact/:contactid" element={<Details />} />
+          {/* >>>>>>>>>>>>< */}
+          <Route path="/contact/:contactid" element={<Details />} />{" "}
+          {/* Burda nested route yapmadık ayrıca route ekledik */}
           <Route
             path="*"
             element={
