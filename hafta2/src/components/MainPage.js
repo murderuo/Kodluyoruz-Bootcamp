@@ -3,6 +3,7 @@ import axios from 'axios';
 import Film from './Item';
 
 function MainPage() {
+
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [optionValue, setOptionValue] = useState('all');
@@ -26,6 +27,7 @@ function MainPage() {
 
   useEffect(() => {
     //sayfa açıldığında paginationı kontrol eden bir fonksiyon tanımladık
+    const fetchURL = `https://swapi.dev/api/people/?page=${pagination.page}`;
     const getData = async () => {
       const fetchMainPage = await memorizedResults;
       // const fetchMainPage = await fetchData(fetchURL);
@@ -86,7 +88,7 @@ function MainPage() {
     setData(deleteItems);
   };
   // eslint-disable-next-line
-  const filteredValues = data?.filter(people => {
+
     //inputa göre filtreleme
     if (people.name.toLowerCase().includes(inputValue.toLowerCase())) {
       return people;
@@ -94,6 +96,7 @@ function MainPage() {
   });
   // eslint-disable-next-line
   const filteredValuesByOption = filteredValues?.filter(people => {
+  const filteredValuesByOption = filteredValues.filter(people => {
     //optiona göre filtreleme
     if (people.gender === optionValue) {
       return people;
@@ -105,6 +108,7 @@ function MainPage() {
   return (
     <>
       {data?.length === 0 ? (
+      {data.length === 0 ? (
         //data yoksa bu kısımı render eder
         <div className="loading-message">
           <img
@@ -114,7 +118,7 @@ function MainPage() {
         </div>
       ) : (
         <>
-          {/* //data var ise bu kısımı render eder */}
+  
           <div className="search-bar">
             <label>Search</label>
             <input
@@ -137,7 +141,7 @@ function MainPage() {
             </select>
           </div>
           <div className="pagination">
-            {/* pagination */}
+
             <button
               disabled={pagination.prevPage}
               onClick={() =>
@@ -168,8 +172,8 @@ function MainPage() {
               <img src="https://i.gifer.com/2Abs.gif" alt="" />
             </div>
           ) : (
-            <div>
-              <div className="item-header">
+            <div >
+              <div className="item-header" >
                 <div className="hdr">Name</div>
                 <div className="hdr">Height</div>
                 <div className="hdr">Gender</div>
@@ -177,9 +181,9 @@ function MainPage() {
                 <div className="hdr">Actions</div>
               </div>
               <div>
-                {/* filtrelenen datayı map liyoruz */}
+
                 {filteredValuesByOption.map((item, index) => (
-                  <div key={index} className="item-container">
+                  <div key={index} className="item-container"  >
                     <div className="item-name">{item.name}</div>
                     <div className="item-height">{item.height}</div>
                     <div className="item-gender">
