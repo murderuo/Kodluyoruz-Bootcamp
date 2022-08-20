@@ -1,16 +1,24 @@
 import { BasketContext } from '../Context/BasketContext';
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 function Basket() {
   const { basket, setBasket } = useContext(BasketContext);
+  const [baketItems, setBasketItems] = useState([]);
+
+  console.log(basket);
+  useEffect(() => {
+    setBasketItems(basket);
+  }, []);
 
   return (
     <>
       <h1>This is basketPage</h1>
+      <Link to="/">Home</Link>
 
       <div>
-        {basket.map(item => {
-          return (<div>{item.title}</div>);
+        {baketItems?.map(item => {
+          return <div key={item.id}>{item.title}</div>;
         })}
       </div>
     </>

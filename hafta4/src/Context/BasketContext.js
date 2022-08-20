@@ -4,12 +4,12 @@ const initialState = {
   products: [],
 };
 
-export const BasketContext = createContext(initialState);
+export const BasketContext = createContext();
 
 const BasketProvider = ({ children }) => {
-  const [baskets, setBasket] = useState([]);
+  const [basket, setBasket] = useState(initialState);
 
-  const values = { baskets, setBasket };
+  const values = { basket, setBasket };
 
   return (
     <BasketContext.Provider value={values}>{children}</BasketContext.Provider>
