@@ -4,12 +4,13 @@ import { BasketContext } from '../Context/BasketContext';
 
 const Home = () => {
   const initialData = useContext(BasketContext);
+  console.log(initialData);
   const [data, setData] = useState([]);
 
   const getData = async () => {
     try {
       const res = await axios.get('https://fakestoreapi.com/products');
-      console.log(res.data);
+      //console.log(res.data);
       setData(res.data);
     } catch (error) {
       console.log(error);
@@ -22,6 +23,7 @@ const Home = () => {
 
   return (
     <>
+      <h1>Home</h1>
       {data.map(item => (
         <div key={item.id}>
           <img src={item.image} />

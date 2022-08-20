@@ -7,6 +7,7 @@ import BasketProvider from './Context/BasketContext';
 function App() {
   return (
     <div>
+    <h1>tihs is app</h1>
       <BrowserRouter>
         <BasketProvider>
           <Routes>
