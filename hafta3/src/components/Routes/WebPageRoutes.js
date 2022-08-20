@@ -12,9 +12,13 @@ function AllPageRoutes() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/contact" element={<Contact />}>
+            {/* <Route index element={<Contact />} />
+            <Route path=":contactid" element={<Details />} /> */}
+          </Route>
+          <Route path="/contact/:contactid" element={<Details />} />
           {/* >>>>>>>>>>>>< */}
-          <Route path="/contact/:contactid" element={<Details />} />{" "}
+          {/* <Route path="/contact/:contactid" element={<Details />} />{" "} */}
           {/* Burda nested route yapmadık ayrıca route ekledik */}
           <Route
             path="*"

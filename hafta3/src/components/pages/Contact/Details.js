@@ -10,7 +10,6 @@ function Details() {
       <h1>
         This is Contact Detail page <br />
         Contact id: {contactid}
-        <div>{console.log("idk")}</div>
       </h1>
     </>
   );

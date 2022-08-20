@@ -1,19 +1,18 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import axios from 'axios';
-import Film from './Item';
+import React, { useState, useEffect, useMemo } from "react";
+import axios from "axios";
+import Film from "./Item";
 
 function MainPage() {
-
   const [data, setData] = useState([]);
-  const [inputValue, setInputValue] = useState('');
-  const [optionValue, setOptionValue] = useState('all');
+  const [inputValue, setInputValue] = useState("");
+  const [optionValue, setOptionValue] = useState("all");
   const [pagination, setPagination] = useState({
     page: 1,
     nextPage: true,
     prevPage: true,
   });
   //genel olarak fetch yapan bir fonksiyon tanımladık
-  const fetchData = async url => {
+  const fetchData = async (url) => {
     const response = await axios.get(url);
     const results = await response.data;
     return results;
@@ -43,7 +42,7 @@ function MainPage() {
     // eslint-disable-next-line
   }, [pagination.page]);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     //inputa girilen değeri set eden bir fonksiyon tanımladık
     // console.log(e.target.value);
     setInputValue(e.target.value);
@@ -56,7 +55,7 @@ function MainPage() {
     // setData(filteredValues);
   };
 
-  const handleOptionChange = e => {
+  const handleOptionChange = (e) => {
     //selecta girilen değeri set eden bir fonksiyon tanımladık
     // console.log(e.target.value);
     setOptionValue(e.target.value);
@@ -71,7 +70,7 @@ function MainPage() {
     // setData(filteredValuesByOption);
   };
 
-  const handleDelete = ndx => {
+  const handleDelete = (ndx) => {
     // satır sonu silme işlemi için bir fonksiyon tanımladık
     //  const val= filteredValues.splice(ndx, 1);
     //  filteredValues.splice(ndx, 1);
@@ -89,25 +88,24 @@ function MainPage() {
   };
   // eslint-disable-next-line
 
-    //inputa göre filtreleme
+  //inputa göre filtreleme
+  const filteredValues = data.filter((people) => {
     if (people.name.toLowerCase().includes(inputValue.toLowerCase())) {
       return people;
     }
   });
   // eslint-disable-next-line
-  const filteredValuesByOption = filteredValues?.filter(people => {
-  const filteredValuesByOption = filteredValues.filter(people => {
+  const filteredValuesByOption = filteredValues.filter((people) => {
     //optiona göre filtreleme
     if (people.gender === optionValue) {
       return people;
-    } else if (optionValue === 'all') {
+    } else if (optionValue === "all") {
       return people;
     }
   });
 
   return (
     <>
-      {data?.length === 0 ? (
       {data.length === 0 ? (
         //data yoksa bu kısımı render eder
         <div className="loading-message">
@@ -118,12 +116,11 @@ function MainPage() {
         </div>
       ) : (
         <>
-  
           <div className="search-bar">
             <label>Search</label>
             <input
               type="text"
-              onChange={e => handleChange(e)}
+              onChange={(e) => handleChange(e)}
               value={inputValue}
             />
           </div>
@@ -132,7 +129,7 @@ function MainPage() {
             <select
               id="cars"
               value={optionValue}
-              onChange={e => handleOptionChange(e)}
+              onChange={(e) => handleOptionChange(e)}
             >
               <option value="all">All</option>
               <option value="male">Male</option>
@@ -141,11 +138,10 @@ function MainPage() {
             </select>
           </div>
           <div className="pagination">
-
             <button
               disabled={pagination.prevPage}
               onClick={() =>
-                setPagination(prevstate => ({
+                setPagination((prevstate) => ({
                   ...prevstate,
                   page: (prevstate.page -= 1),
                 }))
@@ -158,7 +154,7 @@ function MainPage() {
               disabled={pagination.nextPage}
               onClick={() =>
                 // setPagination({ ...pagination, page: (pagination.page += 1) })
-                setPagination(prevstate => ({
+                setPagination((prevstate) => ({
                   ...prevstate,
                   page: (prevstate.page += 1),
                 }))
@@ -172,8 +168,8 @@ function MainPage() {
               <img src="https://i.gifer.com/2Abs.gif" alt="" />
             </div>
           ) : (
-            <div >
-              <div className="item-header" >
+            <div>
+              <div className="item-header">
                 <div className="hdr">Name</div>
                 <div className="hdr">Height</div>
                 <div className="hdr">Gender</div>
@@ -181,9 +177,8 @@ function MainPage() {
                 <div className="hdr">Actions</div>
               </div>
               <div>
-
                 {filteredValuesByOption.map((item, index) => (
-                  <div key={index} className="item-container"  >
+                  <div key={index} className="item-container">
                     <div className="item-name">{item.name}</div>
                     <div className="item-height">{item.height}</div>
                     <div className="item-gender">
