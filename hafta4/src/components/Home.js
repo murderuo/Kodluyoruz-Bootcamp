@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { BasketContext } from '../Context/BasketContext';
+import Styled from 'styled-components';
+import Header from './Header';
 
 const Home = () => {
-  const initialData = useContext(BasketContext);
-  console.log(initialData);
+  const { basket, setBaskets } = useContext(BasketContext);
   const [data, setData] = useState([]);
 
   const getData = async () => {
@@ -23,15 +24,21 @@ const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
-      {data.map(item => (
-        <div key={item.id}>
-          <img src={item.image} />
-          <h2>{item.title}</h2>
-          <p className="description">{item.description}</p>
-          <p className="price">Price: {item.price}$</p>
-        </div>
-      ))}
+      {' '}
+      <Header />
+      <div className="container">
+        {data.map(item => (
+          <div className="card-container" key={item.id}>
+            <img src={item.image} />
+            <h2>{item.title}</h2>
+            <p className="description">{item.description}</p>
+            <p className="price">Price: {item.price}$</p>
+            <center className="basket" style={{ cursor: 'pointer' }}>
+              <img src="https://img.icons8.com/external-others-pike-picture/50/000000/external-basket-webshop-internet-store-others-pike-picture-2.png" />
+            </center>
+          </div>
+        ))}
+      </div>
     </>
   );
 };

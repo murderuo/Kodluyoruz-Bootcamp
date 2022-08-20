@@ -7,9 +7,9 @@ const initialState = {
 export const BasketContext = createContext(initialState);
 
 const BasketProvider = ({ children }) => {
-  const [baskets, setBaskets] = useState([]);
+  const [baskets, setBasket] = useState([]);
 
-  const values = { baskets, setBaskets };
+  const values = { baskets, setBasket };
 
   return (
     <BasketContext.Provider value={values}>{children}</BasketContext.Provider>
