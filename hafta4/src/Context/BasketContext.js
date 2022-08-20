@@ -1,33 +1,17 @@
-import { createContext,useState} from 'react'
+import { createContext, useState } from 'react';
 
+const initialState = {
+  products: [],
+};
 
-const initialState ={
-    products:[],
+const BasketContext = createContext(initialState);
 
-}
+const BasketProvider = ({ children }) => {
+  const [baskets, setBaskets] = useState([]);
 
-const BasketContext=createContext(initialState)
+  const values = { baskets, setBaskets };
 
-const BasketProvider=({children})=>{
-    const [baskets,setBaskets]=useState([])
+  return <BasketContext.Provider value={values}></BasketContext.Provider>;
+};
 
-const values ={baskets,setBaskets}
-
-
-
-return (
-    <BasketContext.Provider ></BasketContext.Provider>
-)
-}
-
-
-
-
-export default BasketContext;
-
-
-
-
-
-
-
+export default BasketProvider;
