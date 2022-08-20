@@ -26,7 +26,7 @@ function MainPage() {
 
   useEffect(() => {
     //sayfa açıldığında paginationı kontrol eden bir fonksiyon tanımladık
-    const fetchURL = `https://swapi.dev/api/people/?page=${pagination.page}`;
+    // const fetchURL = `https://swapi.dev/api/people/?page=${pagination.page}`;
     const getData = async () => {
       const fetchMainPage = await memorizedResults;
       // const fetchMainPage = await fetchData(fetchURL);
@@ -89,6 +89,7 @@ function MainPage() {
   // eslint-disable-next-line
 
   //inputa göre filtreleme
+  // eslint-disable-next-line
   const filteredValues = data.filter((people) => {
     if (people.name.toLowerCase().includes(inputValue.toLowerCase())) {
       return people;
